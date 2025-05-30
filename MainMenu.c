@@ -1,8 +1,10 @@
-﻿#define _CRT_SECURE_NO_WARNINGS
+#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
 #include "evidencija.h"
 #include "datoteka.h"
+#include "sortiranje.h"
+#include "pretraga.h"
 
 int main() {
     int izbor;
@@ -11,7 +13,7 @@ int main() {
     do {
         prikaziIzbornik();
         scanf("%d", &izbor);
-        getchar(); 
+        getchar();
 
         switch ((Izbornik)izbor) {
         case DODAJ:
@@ -32,11 +34,17 @@ int main() {
         case UCITAJ:
             ucitajIzDatoteke("igraci.bin");
             break;
+        case SORTIRAJ:
+            sortirajPoOmjeru();
+            break;
+        case PRETRAZI:
+            pretraziPoImenu();
+            break;
         case IZLAZ:
             printf("Izlaz iz programa.\n");
             break;
         default:
-            printf("Opcija nepostoji!\n");
+            printf("Opcija ne postoji!\n");
             break;
         }
     } while (izbor != IZLAZ);

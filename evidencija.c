@@ -4,9 +4,9 @@
 #include <string.h>
 #include "evidencija.h"
 
- Igrac* igraci = NULL;
- int brojIgraca = 0;
- int kapacitet = 0;
+Igrac* igraci = NULL;
+int brojIgraca = 0;
+int kapacitet = 0;
 
 void inicijalizirajIgrace() {
     kapacitet = 10;
@@ -37,7 +37,7 @@ void dodajIgraca() {
 
         printf("Neispravan unos! Molimo unesite cijeli broj.\n");
 
-        // Očisti ulazni bafer
+       
         while (getchar() != '\n');
     }
     while (1) {
@@ -46,7 +46,7 @@ void dodajIgraca() {
 
         printf("Neispravan unos! Molimo unesite cijeli broj.\n");
 
-        // Očisti ulazni bafer
+       
         while (getchar() != '\n');
     }
     getchar();
@@ -119,6 +119,8 @@ void prikaziIzbornik() {
     printf("4. Obrisi igraca\n");
     printf("5. Spremi u datoteku\n");
     printf("6. Ucitaj iz datoteke\n");
-    printf("7. Izlaz\n");
+    printf("7. Sortiraj po omjeru\n");
+    printf("8. Pretrazi po imenu\n");
+    printf("9. Izlaz\n");
     printf("Odabir: ");
 }

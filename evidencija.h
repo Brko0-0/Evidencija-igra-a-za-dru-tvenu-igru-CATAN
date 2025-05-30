@@ -1,8 +1,6 @@
 #ifndef EVIDENCIJA_H
 #define EVIDENCIJA_H
 
-#include <stdio.h>
-
 #define MAX_IME 50
 
 typedef struct {
@@ -13,7 +11,7 @@ typedef struct {
 } Igrac;
 
 typedef enum {
-    DODAJ = 1, PRIKAZI, AZURIRAJ, BRISI, SPREMI, UCITAJ, IZLAZ
+    DODAJ = 1, PRIKAZI, AZURIRAJ, BRISI, SPREMI, UCITAJ, SORTIRAJ, PRETRAZI, IZLAZ
 } Izbornik;
 
 void inicijalizirajIgrace();
@@ -23,5 +21,9 @@ void azurirajIgraca();
 void obrisiIgraca();
 void oslobodiMemoriju();
 void prikaziIzbornik();
+
+extern Igrac* igraci;
+extern int brojIgraca;
+extern int kapacitet;
 
 #endif
