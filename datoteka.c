@@ -10,7 +10,7 @@ extern int brojIgraca;
 extern int kapacitet;
 
 void spremiUDatoteku(const char* naziv) {
-    FILE* fp = fopen("C:\\Users\\Administrator\\source\\repos\\igraci.txt", "wb");
+    FILE* fp = fopen("C:\\Users\\Administrator\\source\\repos\\Project2\\igraci.txt", "wb");
     if (!fp) {
         perror("Greska pri otvaranju datoteke za pisanje");
         return;
@@ -23,7 +23,7 @@ void spremiUDatoteku(const char* naziv) {
 }
 
 void ucitajIzDatoteke(const char* naziv) {
-    FILE* fp = fopen("C:\\Users\\Administrator\\source\\repos\\igraci.txt", "rb");
+    FILE* fp = fopen("C:\\Users\\Administrator\\source\\repos\\Project2\\igraci.txt", "rb");
     if (!fp) {
         perror("Greska pri otvaranju datoteke za citanje");
         return;

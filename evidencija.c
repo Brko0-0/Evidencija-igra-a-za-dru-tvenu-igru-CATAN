@@ -1,4 +1,4 @@
-#define _CRT_SECURE_NO_WARNINGS
+﻿#define _CRT_SECURE_NO_WARNINGS
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -31,12 +31,26 @@ void dodajIgraca() {
     printf("Unesite ime igraca: ");
     fgets(novi.ime, MAX_IME, stdin);
     novi.ime[strcspn(novi.ime, "\n")] = '\0';
-    printf("Unesite broj pobjeda: ");
-    scanf("%d", &novi.pobjede);
-    printf("Unesite broj poraza: ");
-    scanf("%d", &novi.porazi);
+    while (1) {
+        printf("Unesite broj pobjeda: ");
+        if (scanf("%d", &novi.pobjede) == 1) break;
+
+        printf("Neispravan unos! Molimo unesite cijeli broj.\n");
+
+        // Očisti ulazni bafer
+        while (getchar() != '\n');
+    }
+    while (1) {
+        printf("Unesite broj poraza: ");
+        if (scanf("%d", &novi.porazi) == 1) break;
+
+        printf("Neispravan unos! Molimo unesite cijeli broj.\n");
+
+        // Očisti ulazni bafer
+        while (getchar() != '\n');
+    }
     getchar();
-    novi.omjer = novi.pobjede + novi.porazi > 0 ? (float)novi.pobjede / (novi.pobjede + novi.porazi) : 0.0f;
+    novi.omjer = (novi.pobjede + novi.porazi) > 0 ? (float)novi.pobjede / (novi.pobjede + novi.porazi) : 0.0f;
 
     igraci[brojIgraca++] = novi;
 }
