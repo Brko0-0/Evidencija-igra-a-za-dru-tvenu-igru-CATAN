@@ -40,6 +40,22 @@ int main() {
         case PRETRAZI:
             pretraziPoImenu();
             break;
+        case PRETRAZI_DAT:
+            pretraziUFile("igraci.bin");
+            break;
+        case KOPIRAJ: {
+            StatusKod status = kopirajDatoteku("igraci.bin", "igraci_kopija.bin");
+            if (status == USPJEH) {
+                printf("Datoteka uspješno kopirana.\n");
+            }
+            else {
+                printf("Greška pri kopiranju: %s\n", dohvatiStatusPoruku(status));
+            }
+            break;
+        }
+        case TEST:
+            testDatoteke("igraci.bin");
+            break;
         case IZLAZ:
             printf("Izlaz iz programa.\n");
             break;
