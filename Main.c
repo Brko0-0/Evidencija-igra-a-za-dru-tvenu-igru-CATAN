@@ -1,0 +1,46 @@
+#define _CRT_SECURE_NO_WARNINGS
+#include <stdio.h>
+#include <stdlib.h>
+#include "evidencija.h"
+#include "datoteka.h"
+#include "sortiranje.h"
+#include "pretraga.h"
+#include "dodatno.h"
+
+int main() {
+    int izbor;
+    inicijalizirajIgrace();
+
+    do {
+        prikaziIzbornik();
+        scanf("%d", &izbor);
+        getchar();
+
+        switch ((Izbornik)izbor) {
+        case DODAJ: dodajIgraca(); break;
+        case PRIKAZI: prikaziIgrace(); break;
+        case AZURIRAJ: azurirajIgraca(); break;
+        case BRISI: obrisiIgraca(); break;
+        case SPREMI: spremiUDatoteku("igraci.bin"); break;
+        case UCITAJ: ucitajIzDatoteke("igraci.bin"); break;
+        case SORTIRAJ: sortirajPoOmjeru(); break;
+        case PRETRAZI: pretraziPoImenu(); break;
+        case PRETRAZI_DAT: pretraziUFile("igraci.bin"); break;
+        case KOPIRAJ:
+            if (kopirajDatoteku("igraci.bin", "igraci_kopija.bin") == USPJEH)
+                ispisiPoruku("Datoteka uspjesno kopirana.");
+            else
+                ispisiPoruku("Greska pri kopiranju.");
+            break;
+        case TEST: testDatoteke("igraci.bin"); break;
+        case OBRISI_DAT: obrisiDatoteku("igraci.bin"); break;
+        case PREIMENUJ_DAT: preimenujDatoteku("igraci.bin", "igraci_novo.bin"); break;
+        case VELICINA_DAT: velicinaDatoteke("igraci.bin"); break;
+        case IZLAZ: printf("Izlaz iz programa.\n"); break;
+        default: printf("Nepostojeca opcija!\n"); break;
+        }
+    } while (izbor != IZLAZ);
+
+    oslobodiMemoriju();
+    return 0;
+}
