@@ -10,34 +10,37 @@
 int main() {
     int izbor;
     inicijalizirajIgrace();
+    ucitajNazivDatoteke();
 
     do {
         prikaziIzbornik();
-        scanf("%d", &izbor);
-        getchar();
-
-        switch ((Izbornik)izbor) {
+        if (scanf("%d", &izbor) != 1) {
+            ispisiPoruku("Pogresan unos!");
+            CLEAR_INPUT();
+            continue;
+        }
+        switch (izbor) {
         case DODAJ: dodajIgraca(); break;
         case PRIKAZI: prikaziIgrace(); break;
         case AZURIRAJ: azurirajIgraca(); break;
-        case BRISI: obrisiIgraca(); break;
-        case SPREMI: spremiUDatoteku("igraci.bin"); break;
-        case UCITAJ: ucitajIzDatoteke("igraci.bin"); break;
+        case OBRISI: obrisiIgraca(); break;
+        case SPREMI_DAT: spremiUDatoteku("igraci.bin"); break;
+        case UCITAJ_DAT: ucitajIzDatoteku("igraci.bin"); break;
         case SORTIRAJ: sortirajPoOmjeru(); break;
-        case PRETRAZI: pretraziPoImenu(); break;
-        case PRETRAZI_DAT: pretraziUFile("igraci.bin"); break;
-        case KOPIRAJ:
-            if (kopirajDatoteku("igraci.bin", "igraci_kopija.bin") == USPJEH)
-                ispisiPoruku("Datoteka uspjesno kopirana.");
+        case PRETRAZI: pretraziOpcije(); break;
+        case KOPIRAJ_DAT: {
+            StatusKod kod = kopirajDatoteku("igraci.bin", "igraci_kopija.bin");
+            if (kod != USPJEH)
+                ispisiPoruku(dohvatiStatusPoruku(kod));
             else
-                ispisiPoruku("Greska pri kopiranju.");
-            break;
+                ispisiPoruku("Datoteka uspjesno kopirana.");
+        } break;
         case TEST: testDatoteke("igraci.bin"); break;
         case OBRISI_DAT: obrisiDatoteku("igraci.bin"); break;
         case PREIMENUJ_DAT: preimenujDatoteku("igraci.bin", "igraci_novo.bin"); break;
         case VELICINA_DAT: velicinaDatoteke("igraci.bin"); break;
-        case IZLAZ: printf("Izlaz iz programa.\n"); break;
-        default: printf("Nepostojeca opcija!\n"); break;
+        case IZLAZ: ispisiPoruku("Izlaz iz programa."); break;
+        default: ispisiPoruku("Nepostojeca opcija!"); break;
         }
     } while (izbor != IZLAZ);
 
